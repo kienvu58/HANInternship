@@ -8,7 +8,7 @@
 #include <conio.h>
 #include "Texture.h"
 #include "Model.h"
-#include "SceneManager.h"
+#include "WorldManager.h"
 #include <iostream>
 
 
@@ -35,7 +35,7 @@ int Initialize(ESContext* esContext)
 	const char* woman1Model = "../Resources/Models/Woman1.nfg";
 	const char* woman1Texture = "../Resources/Textures/Woman1.tga";
 	Object* woman1 = new Object(new Model(woman1Model), new Texture(woman1Texture), g_pObjectShader, matModel, matView, matProjection);
-	SceneManager::GetInstance()->AddObject(woman1);
+	WorldManager::GetInstance()->AddObject(woman1);
 
 	matRotation.SetRotationY(Radians(-135.0f));
 	matTranslation.SetTranslation(4.0f, -1.0f, 2.0f);
@@ -43,7 +43,7 @@ int Initialize(ESContext* esContext)
 	const char* woman2Model = "../Resources/Models/Woman2.nfg";
 	const char* woman2Texture = "../Resources/Textures/Woman2.tga";
 	Object* woman2 = new Object(new Model(woman2Model), new Texture(woman2Texture), g_pObjectShader, matModel, matView, matProjection);
-	SceneManager::GetInstance()->AddObject(woman2);
+	WorldManager::GetInstance()->AddObject(woman2);
 
 	// Initialize skyBox
 	matScale.SetScale(100.0f);
@@ -59,7 +59,7 @@ int Initialize(ESContext* esContext)
 	faces.push_back("../Resources/Skybox Textures/back.tga");
 	Object* skyBox = new Object(new Model(skyBoxModel), new Texture(faces), g_pSkyBoxShader, matModel, matView, matProjection);
 	faces.clear();
-	SceneManager::GetInstance()->AddObject(skyBox);
+	WorldManager::GetInstance()->AddObject(skyBox);
 
 	glEnable(GL_DEPTH_TEST);
 	return objectShaderInit || skyBoxShaderInit;
@@ -68,7 +68,7 @@ int Initialize(ESContext* esContext)
 void Draw(ESContext* esContext)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	SceneManager::GetInstance()->Draw();
+	WorldManager::GetInstance()->Draw();
 	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 }
 
@@ -76,25 +76,25 @@ void Update(ESContext* esContext, float deltaTime)
 {
 	if (deltaTime)
 	{
-		SceneManager::GetInstance()->Update(deltaTime);
+		WorldManager::GetInstance()->Update(deltaTime);
 	}
 }
 
 void TouchActionDown(ESContext* esContext, int x, int y)
 {
-	SceneManager::GetInstance()->SetMousePosition(0, x, y);
-	SceneManager::GetInstance()->SetMousePosition(1, x, y);
+	WorldManager::GetInstance()->SetMousePosition(0, x, y);
+	WorldManager::GetInstance()->SetMousePosition(1, x, y);
 }
 
 void TouchActionUp(ESContext* esContext, int x, int y)
 {
-	SceneManager::GetInstance()->SetMousePosition(0, x, y);
-	SceneManager::GetInstance()->SetMousePosition(1, x, y);
+	WorldManager::GetInstance()->SetMousePosition(0, x, y);
+	WorldManager::GetInstance()->SetMousePosition(1, x, y);
 }
 
 void TouchActionMove(ESContext* esContext, int x, int y)
 {
-	SceneManager::GetInstance()->SetMousePosition(1, x, y);
+	WorldManager::GetInstance()->SetMousePosition(1, x, y);
 }
 
 void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
@@ -102,25 +102,25 @@ void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 	switch (key)
 	{
 	case 'W': case 'w':
-		SceneManager::GetInstance()->SetKeyEvent(Forward, bIsPressed);
+		WorldManager::GetInstance()->SetKeyEvent(Forward, bIsPressed);
 		break;
 	case 'A': case 'a':
-		SceneManager::GetInstance()->SetKeyEvent(Left, bIsPressed);
+		WorldManager::GetInstance()->SetKeyEvent(Left, bIsPressed);
 		break;
 	case 'S': case 's':
-		SceneManager::GetInstance()->SetKeyEvent(Backward, bIsPressed);
+		WorldManager::GetInstance()->SetKeyEvent(Backward, bIsPressed);
 		break;
 	case 'D': case 'd':
-		SceneManager::GetInstance()->SetKeyEvent(Right, bIsPressed);
+		WorldManager::GetInstance()->SetKeyEvent(Right, bIsPressed);
 		break;
 	case 'Q': case 'q':
-		SceneManager::GetInstance()->SetKeyEvent(Up, bIsPressed);
+		WorldManager::GetInstance()->SetKeyEvent(Up, bIsPressed);
 		break;
 	case 'E': case 'e':
-		SceneManager::GetInstance()->SetKeyEvent(Down, bIsPressed);
+		WorldManager::GetInstance()->SetKeyEvent(Down, bIsPressed);
 		break;
 	case 'R': case 'r':
-		SceneManager::GetInstance()->SetKeyEvent(Reset, bIsPressed);
+		WorldManager::GetInstance()->SetKeyEvent(Reset, bIsPressed);
 		break;
 	}
 }
@@ -128,7 +128,7 @@ void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 
 void CleanUp()
 {
-	delete SceneManager::GetInstance();
+	delete WorldManager::GetInstance();
 }
 
 int _tmain(int argc, _TCHAR* argv[])
