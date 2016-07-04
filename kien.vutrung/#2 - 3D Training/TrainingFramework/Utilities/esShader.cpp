@@ -7,7 +7,7 @@
 
 /// \brief Load a shader, check for compile errors, print error messages to output log
 /// \param type Type of shader (GL_VERTEX_SHADER or GL_FRAGMENT_SHADER)
-/// \param shaderSrc Shader source string
+/// \param shaderSrc Shaders source string
 /// \return A new shader object on success, 0 on failure
 //
 GLuint ESUTIL_API esLoadShader ( GLenum type, char * filename )
