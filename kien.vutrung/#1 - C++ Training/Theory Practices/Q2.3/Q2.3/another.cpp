@@ -1,0 +1,1 @@
+int myVar = 10;
