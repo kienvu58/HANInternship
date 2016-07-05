@@ -67,8 +67,7 @@ int Initialize(ESContext* esContext)
 
 void Draw(ESContext* esContext)
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(1.f, 1.f, 1.f, 1.f);
+	glClear(GL_COLOR_BUFFER_BIT);
 	WorldManager::GetInstance()->Draw();
 	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 }
