@@ -1,0 +1,29 @@
+#Models: 3
+ID 0 
+FILE Models/Woman1.nfg
+ID 1
+FILE Models/Woman2.nfg
+ID 2
+FILE Models/SkyBox.nfg
+
+#2D Textures: 2
+ID 0
+FILE textures/woman1.tga
+TILING REPEAT
+ID 1
+FILE textures/woman2.tga
+TILING REPEAT
+
+#Shaders: 2
+ID 0
+VS shaders/ObjectShaderVS.vs
+FS shaders/ObjectShaderFS.fs
+STATES 2
+STATE CULLING
+STATE DEPTH_TEST
+ID 1
+VS shaders/SkyBoxShaderVS.vs
+FS shaders/SkyBoxShaderFS.fs
+STATES 2
+STATE DEPTH_TEST
+STATE ALPHA

@@ -20,6 +20,7 @@ void Object::Draw()
 
 	glBindBuffer(GL_ARRAY_BUFFER, m_pModel->GetVboId());
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_pModel->GetIboId());
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(m_pTexture->GetTarget(), m_pTexture->GetTextureId());
 
 	auto iTextureLoc = glGetUniformLocation(m_pShader->program, "u_texture");
