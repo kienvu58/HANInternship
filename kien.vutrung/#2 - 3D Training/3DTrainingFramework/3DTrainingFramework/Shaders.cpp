@@ -2,17 +2,14 @@
 #include "Shaders.h"
 
 
-Shaders::Shaders(): m_States(nullptr)
+Shaders::Shaders(): iPosLoc(-1), iUVLoc(-1), iMVPLoc(-1), m_Id(0), m_Program(0), m_VertexShader(0), m_FragmentShader(0)
 {
 }
 
 
 Shaders::~Shaders()
 {
-	if (m_States)
-	{
-		delete m_States;
-	}
+	m_States.clear();
 	glDeleteProgram(m_Program);
 	glDeleteShader(m_VertexShader);
 	glDeleteShader(m_FragmentShader);
@@ -43,6 +40,12 @@ int Shaders::Initialize(char* fileVertexShader, char* fileFragmentShader)
 	}
 
 	m_Program = esLoadProgram(m_VertexShader, m_FragmentShader);
+
+	//finding location of uniforms / attributes
+	iPosLoc = glGetAttribLocation(m_Program, "a_posL");
+	iUVLoc = glGetAttribLocation(m_Program, "a_uv");
+	iMVPLoc = glGetUniformLocation(m_Program, "u_MVP");
+
 	return 0;
 }
 
@@ -51,17 +54,23 @@ GLuint Shaders::GetProgram() const
 	return m_Program;
 }
 
-void Shaders::SetStates(GLenum* states)
+void Shaders::SetStates(std::vector<GLenum> states)
 {
 	m_States = states;
 }
 
-int Shaders::GetNStates() const
+void Shaders::EnableStates()
 {
-	return m_NStates;
+	for (auto it : m_States)
+	{
+		glEnable(it);
+	}
 }
 
-void Shaders::SetNStates(int nStates)
+void Shaders::DisableStates()
 {
-	m_NStates = nStates;
+	for (auto it : m_States)
+	{
+		glDisable(it);
+	}
 }

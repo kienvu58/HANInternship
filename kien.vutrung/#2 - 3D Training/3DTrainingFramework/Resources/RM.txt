@@ -14,16 +14,25 @@ ID 1
 FILE textures/woman2.tga
 TILING REPEAT
 
+#Cube Textures: 1
+ID 2
+FILE textures/left.tga
+FILE textures/right.tga
+FILE textures/bottom.tga
+FILE textures/top.tga
+FILE textures/front.tga
+FILE textures/back.tga
+TILING CLAMP
+
 #Shaders: 2
 ID 0
 VS shaders/ObjectShaderVS.vs
 FS shaders/ObjectShaderFS.fs
 STATES 2
-STATE CULLING
+STATE CULLING 
 STATE DEPTH_TEST
 ID 1
-VS shaders/SkyBoxShaderVS.vs
-FS shaders/SkyBoxShaderFS.fs
-STATES 2
+VS shaders/SkyShaderVS.vs
+FS shaders/SkyShaderFS.fs
+STATES 1
 STATE DEPTH_TEST
-STATE ALPHA

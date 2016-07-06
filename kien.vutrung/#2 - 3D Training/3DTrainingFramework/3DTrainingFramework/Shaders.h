@@ -1,7 +1,7 @@
 #pragma once
 
-#define MAX_LENGTH	260
 #include "../Utilities/esUtil.h"
+#include <vector>
 
 class Shaders
 {
@@ -12,15 +12,18 @@ public:
 	void SetId(int id);
 	int Initialize(char * fileVertexShader, char * fileFragmentShader);
 	GLuint GetProgram() const;
-	void SetStates(GLenum* states);
-	int GetNStates() const;
-	void SetNStates(int nStates);
+	void SetStates(std::vector<GLenum> states);
+	void EnableStates();
+	void DisableStates();
+
+	GLint iPosLoc;
+	GLint iUVLoc;
+	GLint iMVPLoc;
 private:
 	int m_Id;
 	GLuint m_Program;
 	GLuint m_VertexShader;
 	GLuint m_FragmentShader;
-	int m_NStates;
-	GLenum * m_States;
+	std::vector<GLenum> m_States;
 };
 

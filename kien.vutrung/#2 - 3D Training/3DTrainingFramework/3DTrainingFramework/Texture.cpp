@@ -13,14 +13,14 @@ Texture::~Texture()
 }
 
 
-void Texture::LoadTexture(const char** filename, GLenum tiling)
+void Texture::LoadTexture(std::vector<const char*> filenames, GLenum tiling)
 {
 	glGenTextures(1, &m_TextureId);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_TextureId);
 	for (int i = 0; i < 6; i++)
 	{
 		int iWidth, iHeight, iBpp;
-		auto* imageData = LoadTGA(filename[i], &iWidth, &iHeight, &iBpp);
+		auto* imageData = LoadTGA(filenames[i], &iWidth, &iHeight, &iBpp);
 		auto internalformat = (iBpp == 32) ? GL_RGBA : GL_RGB;
 		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, internalformat, iWidth, iHeight, 0, internalformat, GL_UNSIGNED_BYTE, imageData);
 		if (imageData)
