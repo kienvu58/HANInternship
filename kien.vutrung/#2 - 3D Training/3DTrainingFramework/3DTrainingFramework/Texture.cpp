@@ -43,7 +43,7 @@ void Texture::LoadTexture(const char* filename, GLenum tiling)
 	int iWidth, iHeight, iBpp;
 	auto* imageData = LoadTGA(filename, &iWidth, &iHeight, &iBpp);
 	auto internalformat = (iBpp == 32) ? GL_RGBA : GL_RGB;
-	glTexImage2D(GL_TEXTURE_2D, 0, internalformat, iWidth, iHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, imageData);
+	glTexImage2D(GL_TEXTURE_2D, 0, internalformat, iWidth, iHeight, 0, internalformat, GL_UNSIGNED_BYTE, imageData);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, tiling);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, tiling);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

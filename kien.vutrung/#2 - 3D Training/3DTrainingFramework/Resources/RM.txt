@@ -1,8 +1,8 @@
 #Models: 4
 ID 0 
-FILE Models/Woman1.nfg
+FILE Models/woman1.nfg
 ID 1
-FILE Models/Woman2.nfg
+FILE Models/Marine.nfg
 ID 2
 FILE Models/SkyBox.nfg
 ID 3
@@ -13,7 +13,7 @@ ID 0
 FILE textures/woman1.tga
 TILING REPEAT
 ID 1
-FILE textures/woman2.tga
+FILE textures/Marine.tga
 TILING REPEAT
 ID 3
 FILE textures/Grass.tga
