@@ -51,14 +51,6 @@ void SceneManager::Initialize(const char* filename)
 				fscanf(f, "TEXTURE %d\n", &textureId);
 				textureIds.push_back(textureId);
 			}
-			int nCubeTextures;
-			fscanf(f, "CUBETEXTURES %d\n", &nCubeTextures);
-			for (int j = 0; j < nCubeTextures; j++)
-			{
-				int textureId;
-				fscanf(f, "CUBETEXTURE %d\n", &textureId);
-				textureIds.push_back(textureId);
-			}
 			int shadersId;
 			fscanf(f, "SHADER %d\n", &shadersId);
 			Vector3 pos, rot, scale;
@@ -103,17 +95,12 @@ void SceneManager::Draw()
 
 		glBindBuffer(GL_ARRAY_BUFFER, model->GetVboId());
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->GetIboId());
-		for (auto it : textureIds)
+		for (int i = 0; i < textureIds.size(); i++)
 		{
-			Texture* texture = ResourceManager::GetInstance()->GetTextureById(it);
+			glActiveTexture(GL_TEXTURE0 + i);
+			Texture* texture = ResourceManager::GetInstance()->GetTextureById(textureIds[i]);
 			glBindTexture(texture->GetTarget(), texture->GetTextureId());
-		}
-
-
-		auto iTextureLoc = glGetUniformLocation(shaders->GetProgram(), "u_texture");
-		if (iTextureLoc != -1)
-		{
-			glUniform1i(iTextureLoc, 0);
+			glUniform1i(shaders->iTexLoc[i], i);
 		}
 
 		if (shaders->iPosLoc != -1)
@@ -137,6 +124,11 @@ void SceneManager::Draw()
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		for (auto i : textureIds)
+		{
+			Texture* texture = ResourceManager::GetInstance()->GetTextureById(i);
+			glBindTexture(texture->GetTarget(), 0);
+		}
 		shaders->DisableStates();
 	}
 }

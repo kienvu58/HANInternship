@@ -109,5 +109,11 @@
     <None Include="..\Resources\Shaders\SkyShaderFS.fs">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="..\Resources\Shaders\TerrainShaderFS.fs">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\TerrainShaderVS.vs">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

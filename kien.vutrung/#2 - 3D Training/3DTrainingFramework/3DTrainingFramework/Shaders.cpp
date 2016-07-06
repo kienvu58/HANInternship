@@ -45,7 +45,10 @@ int Shaders::Initialize(char* fileVertexShader, char* fileFragmentShader)
 	iPosLoc = glGetAttribLocation(m_Program, "a_posL");
 	iUVLoc = glGetAttribLocation(m_Program, "a_uv");
 	iMVPLoc = glGetUniformLocation(m_Program, "u_MVP");
-
+	iTexLoc[0] = glGetUniformLocation(m_Program, "u_texture");
+	iTexLoc[1] = glGetUniformLocation(m_Program, "u_texture1");
+	iTexLoc[2] = glGetUniformLocation(m_Program, "u_texture2");
+	iTexLoc[3] = glGetUniformLocation(m_Program, "u_blendmap");
 	return 0;
 }
 

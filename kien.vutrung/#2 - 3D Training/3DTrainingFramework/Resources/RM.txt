@@ -1,17 +1,31 @@
-#Models: 3
+#Models: 4
 ID 0 
 FILE Models/Woman1.nfg
 ID 1
 FILE Models/Woman2.nfg
 ID 2
 FILE Models/SkyBox.nfg
+ID 3
+FILE Models/Terrain.nfg
 
-#2D Textures: 2
+#2D Textures: 6
 ID 0
 FILE textures/woman1.tga
 TILING REPEAT
 ID 1
 FILE textures/woman2.tga
+TILING REPEAT
+ID 3
+FILE textures/Grass.tga
+TILING REPEAT
+ID 4
+FILE textures/dirt.tga
+TILING REPEAT
+ID 5
+FILE textures/Rock.tga
+TILING REPEAT
+ID 6
+FILE textures/Terrain_blend_map.tga
 TILING REPEAT
 
 #Cube Textures: 1
@@ -24,7 +38,7 @@ FILE textures/front.tga
 FILE textures/back.tga
 TILING CLAMP
 
-#Shaders: 2
+#Shaders: 3 
 ID 0
 VS shaders/ObjectShaderVS.vs
 FS shaders/ObjectShaderFS.fs
@@ -35,4 +49,10 @@ ID 1
 VS shaders/SkyShaderVS.vs
 FS shaders/SkyShaderFS.fs
 STATES 1
+STATE DEPTH_TEST
+ID 2
+VS shaders/TerrainShaderVS.vs
+FS shaders/TerrainShaderFS.fs
+STATES 2
+STATE CULLING
 STATE DEPTH_TEST

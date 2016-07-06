@@ -193,6 +193,8 @@
     <None Include="..\Resources\Shaders\ObjectShaderVS.vs" />
     <None Include="..\Resources\Shaders\SkyShaderFS.fs" />
     <None Include="..\Resources\Shaders\SkyShaderVS.vs" />
+    <None Include="..\Resources\Shaders\TerrainShaderFS.fs" />
+    <None Include="..\Resources\Shaders\TerrainShaderVS.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

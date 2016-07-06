@@ -19,6 +19,7 @@ public:
 	GLint iPosLoc;
 	GLint iUVLoc;
 	GLint iMVPLoc;
+	GLint iTexLoc[4];
 private:
 	int m_Id;
 	GLuint m_Program;
