@@ -184,17 +184,17 @@
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Utilities\Utilities.vcxproj">
-      <Project>{0d44529e-f7dd-4454-8ead-9afd857f53b4}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\Resources\Shaders\ObjectShaderFS.fs" />
     <None Include="..\Resources\Shaders\ObjectShaderVS.vs" />
     <None Include="..\Resources\Shaders\SkyShaderFS.fs" />
     <None Include="..\Resources\Shaders\SkyShaderVS.vs" />
     <None Include="..\Resources\Shaders\TerrainShaderFS.fs" />
     <None Include="..\Resources\Shaders\TerrainShaderVS.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.vcxproj">
+      <Project>{0d44529e-f7dd-4454-8ead-9afd857f53b4}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

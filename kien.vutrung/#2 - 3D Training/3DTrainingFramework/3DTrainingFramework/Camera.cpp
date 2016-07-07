@@ -8,7 +8,7 @@ Camera::Camera() : m_vec3Position(), m_vec3Up(0.0f, 1.0f, 0.0f), m_isViewDirty(t
 	Rotate();
 }
 
-Camera::Camera(float speed): m_fSpeed(speed), m_vec3Position(), m_vec3Up(0.0f, 1.0f, 0.0f), m_isViewDirty(true)
+Camera::Camera(float speed): m_fSpeed(speed), m_vec3Position(0.0f, 4.0f, 0.0f), m_vec3Up(0.0f, 1.0f, 0.0f), m_isViewDirty(true)
 {
 	Rotate();
 }

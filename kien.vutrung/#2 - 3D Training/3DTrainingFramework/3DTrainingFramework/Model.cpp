@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Model.h"
 #include "Vertex.h"
+#include "../Utilities/TGA.h"
+#include <iostream>
 
 
 Model::Model(): m_Id(0), m_NIndices(0), m_NVertices(0), m_VboId(0), m_IboId(0)
@@ -20,13 +22,35 @@ void Model::LoadModel(const char* filename)
 	{
 		fscanf(f, "NrVertices: %d\n", &m_NVertices);
 		Vertex* vertices = new Vertex[m_NVertices];
-		for (int i = 0; i < m_NVertices; i++)
+		if (strcmp(filename, "../Resources/Models/Terrain.nfg") == 0)
 		{
-			Vertex tmp;
-			fscanf(f, "%*d. pos:[%f, %f, %f]; norm:[%*f, %*f, %*f]; binorm:[%*f, %*f, %*f]; tgt:[%*f, %*f, %*f]; uv:[%f, %f];\n",
-				&tmp.pos.x, &tmp.pos.y, &tmp.pos.z,	&tmp.uv.x, &tmp.uv.y);
-			vertices[i] = tmp;
+			FILE* file;
+			file = fopen("../Resources/Textures/heightmap33.raw", "rb");
+			unsigned char* heightMap = new unsigned char[1089];
+			fread(heightMap, 1, 1089, file);
+			fclose(file);
+
+			for (int i = 0; i < m_NVertices; i++)
+			{
+				Vertex tmp;
+				fscanf(f, "%*d. pos:[%f, %f, %f]; norm:[%*f, %*f, %*f]; binorm:[%*f, %*f, %*f]; tgt:[%*f, %*f, %*f]; uv:[%f, %f];\n",
+					&tmp.pos.x, &tmp.pos.y, &tmp.pos.z, &tmp.uv.x, &tmp.uv.y);
+				tmp.pos.y = heightMap[i]*0.1;
+				vertices[i] = tmp;
+			}
+			delete[] heightMap;
+		} 
+		else
+		{
+			for (int i = 0; i < m_NVertices; i++)
+			{
+				Vertex tmp;
+				fscanf(f, "%*d. pos:[%f, %f, %f]; norm:[%*f, %*f, %*f]; binorm:[%*f, %*f, %*f]; tgt:[%*f, %*f, %*f]; uv:[%f, %f];\n",
+					&tmp.pos.x, &tmp.pos.y, &tmp.pos.z, &tmp.uv.x, &tmp.uv.y);
+				vertices[i] = tmp;
+			}
 		}
+		
 		fscanf(f, "NrIndices: %d\n", &m_NIndices);
 		unsigned int* indices = new unsigned int[m_NIndices];
 		for (int i = 0; i < m_NIndices / 3; i++)
