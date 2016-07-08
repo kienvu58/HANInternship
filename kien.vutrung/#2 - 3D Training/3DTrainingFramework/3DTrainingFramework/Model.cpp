@@ -35,7 +35,7 @@ void Model::LoadModel(const char* filename)
 				Vertex tmp;
 				fscanf(f, "%*d. pos:[%f, %f, %f]; norm:[%*f, %*f, %*f]; binorm:[%*f, %*f, %*f]; tgt:[%*f, %*f, %*f]; uv:[%f, %f];\n",
 					&tmp.pos.x, &tmp.pos.y, &tmp.pos.z, &tmp.uv.x, &tmp.uv.y);
-				tmp.pos.y = heightMap[i]*0.1;
+				tmp.pos.y = heightMap[i];
 				vertices[i] = tmp;
 			}
 			delete[] heightMap;

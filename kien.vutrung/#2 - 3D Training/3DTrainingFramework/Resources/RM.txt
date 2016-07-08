@@ -1,4 +1,4 @@
-#Models: 4
+#Models: 5
 ID 0 
 FILE Models/woman1.nfg
 ID 1
@@ -7,8 +7,10 @@ ID 2
 FILE Models/SkyBox.nfg
 ID 3
 FILE Models/Terrain.nfg
+ID 4
+FILE models/fire.nfg
 
-#2D Textures: 6
+#2D Textures: 9
 ID 0
 FILE textures/woman1.tga
 TILING REPEAT
@@ -16,7 +18,7 @@ ID 1
 FILE textures/Marine.tga
 TILING REPEAT
 ID 3
-FILE textures/Grass.tga
+FILE textures/waternormal.tga
 TILING REPEAT
 ID 4
 FILE textures/dirt.tga
@@ -26,6 +28,15 @@ FILE textures/Rock.tga
 TILING REPEAT
 ID 6
 FILE textures/Terrain_blend_map.tga
+TILING REPEAT
+ID 7
+FILE textures/DisplacementMap.tga
+TILING REPEAT
+ID 8
+FILE textures/fire3.tga
+TILING REPEAT
+ID 9
+FILE textures/fire_mask.tga
 TILING REPEAT
 
 #Cube Textures: 1
@@ -38,7 +49,7 @@ FILE textures/front.tga
 FILE textures/back.tga
 TILING CLAMP
 
-#Shaders: 3 
+#Shaders: 4 
 ID 0
 VS shaders/ObjectShaderVS.vs
 FS shaders/ObjectShaderFS.fs
@@ -55,4 +66,9 @@ VS shaders/TerrainShaderVS.vs
 FS shaders/TerrainShaderFS.fs
 STATES 2
 STATE CULLING
+STATE DEPTH_TEST
+ID 3
+VS shaders/FireShaderVS.vs
+FS shaders/FireShaderFS.fs
+STATES 1
 STATE DEPTH_TEST

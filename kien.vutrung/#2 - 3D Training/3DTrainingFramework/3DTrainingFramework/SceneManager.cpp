@@ -102,6 +102,10 @@ void SceneManager::Draw()
 			glBindTexture(texture->GetTarget(), texture->GetTextureId());
 			glUniform1i(shaders->iTexLoc[i], i);
 		}
+		if (shaders->iTimeLoc != -1)
+		{
+			glUniform1f(shaders->iTimeLoc, GetTickCount()%1000/1000.f);
+		}
 
 		if (shaders->iPosLoc != -1)
 		{

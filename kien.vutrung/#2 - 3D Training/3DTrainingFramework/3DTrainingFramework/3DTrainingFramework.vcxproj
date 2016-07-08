@@ -184,6 +184,8 @@
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Resources\Shaders\FireShaderFS.fs" />
+    <None Include="..\Resources\Shaders\FireShaderVS.vs" />
     <None Include="..\Resources\Shaders\ObjectShaderFS.fs" />
     <None Include="..\Resources\Shaders\ObjectShaderVS.vs" />
     <None Include="..\Resources\Shaders\SkyShaderFS.fs" />
